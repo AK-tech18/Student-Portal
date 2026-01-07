@@ -12,9 +12,18 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [page, setPage] = useState("dashboard");
 
+  // 🔐 LOGIN SCREEN
   if (!loggedIn) {
-    return <Login onLogin={() => setLoggedIn(true)} />;
+    return (
+      <Login
+        onLogin={() => {
+          setLoggedIn(true);       // ✅ login successful
+          setPage("dashboard");   // ✅ force dashboard
+        }}
+      />
+    );
   }
+
 
   if (page === "study") {
     return (

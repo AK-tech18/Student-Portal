@@ -353,3 +353,137 @@ body {
   color: white;
   cursor: pointer;
 }
+/* ================================
+   JUDGE FRIENDLY FONT SIZE PATCH
+   (NO LAYOUT CHANGE)
+================================ */
+
+/* MAIN PAGE TITLES */
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* SIDEBAR */
+.sidebar h2 {
+  font-size: 20px;
+}
+
+.sidebar a {
+  font-size: 15px;
+  padding: 12px 14px;
+}
+
+/* TOP SEARCH */
+.search input {
+  font-size: 15px;
+}
+
+/* DASHBOARD CARDS (Study Material, Planner, AI etc.) */
+.card-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* QUOTE BAR */
+.quote,
+.motivation {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* TODAY'S FOCUS */
+.focus-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.focus-item {
+  font-size: 15px;
+}
+
+/* STAT CARDS (62%, Days Left, Confidence) */
+.stat-number {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 14px;
+}
+
+/* SMART ALERTS */
+.alert-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.alert-item {
+  font-size: 15px;
+}
+
+/* CONTINUE LEARNING */
+.continue-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.continue-item {
+  font-size: 15px;
+}
+
+/* RIGHT PANEL (Days Streak, Subjects, Confidence) */
+.right-panel h3 {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.right-panel p,
+.right-panel span {
+  font-size: 15px;
+}
+/* ===== JUDGE READABILITY FIX (SAFE) ===== */
+
+/* overall text thoda bada */
+body {
+  font-size: 16px;
+}
+
+/* headings clearly visible */
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+/* buttons readable */
+button {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* cards / panels text */
+p, span, li {
+  font-size: 15px;
+}

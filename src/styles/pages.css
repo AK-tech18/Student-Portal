@@ -362,67 +362,88 @@ button {
 .study-actions button:hover {
   background: #6d28d9;
 }
-/* ===== SETTINGS PAGE ===== */
+/* ================================
+   SETTINGS PAGE — FINAL FIX
+   (Layout + Font, Judge Friendly)
+================================ */
+
+/* PAGE WRAPPER */
 .settings-page {
-  max-width: 900px;
+  max-width: 900px;          /* content center */
+  margin: 40px auto;         /* left-right balance */
+  padding: 0 20px;
 }
 
-.settings-header {
-  margin-bottom: 30px;
-}
-
+/* HEADER */
 .settings-header h2 {
-  font-size: 26px;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
 .settings-header p {
-  color: #94a3b8;
-  margin-top: 4px;
+  font-size: 16px;
+  opacity: 0.85;
 }
 
+/* GRID */
 .settings-grid {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: 18px;
+  margin-top: 25px;
 }
 
+/* EACH CARD */
 .settings-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(135deg, #111827, #1f2937);
+  gap: 18px;
   padding: 18px 22px;
   border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  background: rgba(255, 255, 255, 0.06);
 }
 
+/* ICON */
 .settings-card .icon {
   font-size: 22px;
 }
 
+/* TITLE */
 .settings-card h4 {
-  margin: 0;
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
+/* SUBTEXT */
 .settings-card p {
-  margin: 0;
-  font-size: 13px;
-  color: #9ca3af;
+  font-size: 15px;
+  opacity: 0.8;
 }
 
+/* STATUS BUTTON */
 .settings-card .status {
-  background: #334155;
+  font-size: 14px;
+  font-weight: 600;
   padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
+  border-radius: 18px;
+  background: #2b2b2b;
 }
 
 .settings-card .status.active {
   background: #22c55e;
-  color: #052e16;
+  color: #000;
 }
+
+/* BACK BUTTON */
+.back-btn {
+  margin-top: 30px;
+  font-size: 15px;
+  padding: 12px 22px;
+  border-radius: 12px;
+}
+
 
 
 
@@ -531,4 +552,103 @@ button {
   background: #6d28d9;
 }
 
+
+/* ================================
+   EXAM PLANNER – FONT BOOST v2
+   (BIGGER, JUDGE FRIENDLY)
+================================ */
+
+/* Page title: Exam Planner */
+.page h2 {
+  font-size: 34px;        /* ⬆ was smaller */
+  font-weight: 700;
+}
+
+/* Subtitle: Upcoming exams & deadlines */
+.page p {
+  font-size: 18px;        /* ⬆ clearer */
+  opacity: 0.9;
+}
+
+/* Exam rows text (subject names) */
+.page > div > div {
+  font-size: 18px;        /* ⬆ main readable text */
+}
+
+/* Subject name emphasis */
+.page strong,
+.page span {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Dates (10 Jan, 14 Jan, 8 Jan) */
+.page div div:last-child {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* AI Tip bar text */
+.page .ai-tip,
+.page .tip,
+.page .highlight {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Back to Dashboard button */
+.back-btn,
+.page button {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 24px;
+}
+
+
+
+/* Page heading */
+.settings-page h2,
+.page h2 {
+  font-size: 34px;
+  font-weight: 700;
+}
+
+/* Subtitle */
+.page > p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* Subject title inside cards (Data Structures, OS, DBMS) */
+.page h3,
+.page h4 {
+  font-size: 21px;     /* ⬆ clear increase */
+  font-weight: 600;
+}
+
+/* Card description text */
+.page .card p,
+.page p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Progress label + percentage (Progress, 62%, etc.) */
+.page span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Buttons: View / Download / Practice Questions / PYQs */
+.page button {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 26px;
+}
+
+/* Back to Dashboard */
+.back-btn {
+  font-size: 16px;
+  font-weight: 600;
+}
 
