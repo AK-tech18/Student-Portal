@@ -5,6 +5,7 @@ export default function AIInsights({ back }) {
   const [files, setFiles] = useState([]);
   const [analysis, setAnalysis] = useState([]);
   const [highlight, setHighlight] = useState("");
+  const [aiTip, setAiTip] = useState("");
 
   const handleUpload = (e) => {
     const selected = Array.from(e.target.files);
@@ -12,6 +13,11 @@ export default function AIInsights({ back }) {
   };
 
   const runAIAnalysis = () => {
+    if (files.length === 0) {
+      alert("Please upload at least one PDF");
+      return;
+    }
+
     const result = [];
 
     files.forEach((file) => {
@@ -63,11 +69,28 @@ export default function AIInsights({ back }) {
 
     setAnalysis(result);
 
-    if (result.length > 0) {
-      const random =
-        result[Math.floor(Math.random() * result.length)].subject;
-      setHighlight(random);
-    }
+    /* ========= AI DECISION LOGIC (FIXED) ========= */
+    const high = result.filter((r) => r.priority === "High");
+    const medium = result.filter((r) => r.priority === "Medium");
+    const low = result.filter((r) => r.priority === "Low");
+
+    let pool = [];
+
+    const roll = Math.random();
+    if (roll < 0.6 && high.length) pool = high;
+    else if (roll < 0.85 && medium.length) pool = medium;
+    else if (low.length) pool = low;
+    else pool = result;
+
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+
+    setHighlight("");
+    setTimeout(() => {
+      setHighlight(pick.subject);
+      setAiTip(
+        `Focus on ${pick.subject} — frequently asked in previous exams`
+      );
+    }, 100);
   };
 
   return (
@@ -120,6 +143,17 @@ export default function AIInsights({ back }) {
           </div>
         ))}
       </div>
+
+      {/* ===== AI TIP ===== */}
+      {aiTip && (
+        <div className="ai-highlight-wrap">
+          <div className="ai-highlight">
+            🤖 <b>AI Recommendation:</b>
+            <br />
+            {aiTip}
+          </div>
+        </div>
+      )}
 
       {/* ===== ACTION BUTTONS ===== */}
       <div className="ai-actions">
