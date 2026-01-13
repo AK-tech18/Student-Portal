@@ -9,6 +9,12 @@ export default function Dashboard({
   goAI,
   goSettings,
 }) {
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
+
   return (
     <div className="wrapper">
       <Sidebar
@@ -16,12 +22,15 @@ export default function Dashboard({
         goPlanner={goPlanner}
         goAI={goAI}
         goSettings={goSettings}
+        onLogout={handleLogout}
       />
+
       <MainContent
         goStudy={goStudy}
         goPlanner={goPlanner}
         goAI={goAI}
       />
+
       <RightPanel />
     </div>
   );

@@ -106,6 +106,8 @@
 .btn {
   height: 46px;
   border-radius: 12px;
+  min-width: 120px;  
+  padding: 0 28px;
   background: linear-gradient(135deg, #7c3aed, #9333ea);
   border: none;
   color: white;

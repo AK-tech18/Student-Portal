@@ -2,8 +2,76 @@ import { useState } from "react";
 import "../styles/auth.css";
 import "boxicons/css/boxicons.min.css";
 
-export default function Login({ onLogin }) {
+export default function Login() {
   const [active, setActive] = useState(false);
+
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const [regUsername, setRegUsername] = useState("");
+  const [regEmail, setRegEmail] = useState("");
+  const [regPassword, setRegPassword] = useState("");
+
+  // 🔐 LOGIN HANDLER
+  const handleLogin = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: loginEmail,
+          password: loginPassword,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+
+        // ✅ SAFE CHECK (THIS FIXES SERVER ERROR)
+        if (data.user && data.user.name) {
+          localStorage.setItem("userName", data.user.name);
+        }
+
+        window.location.reload();
+      } else {
+        alert(data.message || "Login failed");
+      }
+    } catch (err) {
+      alert("Server error");
+    }
+  };
+
+  // 🔐 REGISTER HANDLER (UNCHANGED)
+  const handleRegister = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: regUsername,
+          email: regEmail,
+          password: regPassword,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Registered successfully. Please login.");
+        setActive(false);
+      } else {
+        alert(data.message || "Registration failed");
+      }
+    } catch (err) {
+      alert("Server error");
+    }
+  };
 
   return (
     <div className="auth-wrapper">
@@ -14,18 +82,30 @@ export default function Login({ onLogin }) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              onLogin(); // ✅ login → dashboard
+              handleLogin();
             }}
           >
             <h1>Login</h1>
 
             <div className="input-box">
-              <input type="text" placeholder="Username" />
+              <input
+                type="email"
+                placeholder="Email"
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
+                required
+              />
               <i className="bx bxs-user"></i>
             </div>
 
             <div className="input-box">
-              <input type="password" placeholder="Password" />
+              <input
+                type="password"
+                placeholder="Password"
+                value={loginPassword}
+                onChange={(e) => setLoginPassword(e.target.value)}
+                required
+              />
               <i className="bx bxs-lock-alt"></i>
             </div>
 
@@ -36,26 +116,6 @@ export default function Login({ onLogin }) {
             <button type="submit" className="btn">
               Login
             </button>
-
-            <p className="social-text">or login with social platforms</p>
-
-            <div className="social-icons">
-              <a
-                href="https://accounts.google.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="bx bxl-google"></i>
-              </a>
-
-              <a
-                href="https://www.linkedin.com/login"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="bx bxl-linkedin"></i>
-              </a>
-            </div>
           </form>
         </div>
 
@@ -64,23 +124,41 @@ export default function Login({ onLogin }) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              onLogin(); // ✅ register → dashboard
+              handleRegister();
             }}
           >
             <h1>Register</h1>
 
             <div className="input-box">
-              <input type="text" placeholder="Username" />
+              <input
+                type="text"
+                placeholder="Username"
+                value={regUsername}
+                onChange={(e) => setRegUsername(e.target.value)}
+                required
+              />
               <i className="bx bxs-user"></i>
             </div>
 
             <div className="input-box">
-              <input type="email" placeholder="Email" />
+              <input
+                type="email"
+                placeholder="Email"
+                value={regEmail}
+                onChange={(e) => setRegEmail(e.target.value)}
+                required
+              />
               <i className="bx bxs-envelope"></i>
             </div>
 
             <div className="input-box">
-              <input type="password" placeholder="Password" />
+              <input
+                type="password"
+                placeholder="Password"
+                value={regPassword}
+                onChange={(e) => setRegPassword(e.target.value)}
+                required
+              />
               <i className="bx bxs-lock-alt"></i>
             </div>
 

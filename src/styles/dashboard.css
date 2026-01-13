@@ -1,3 +1,39 @@
+:root {
+  --heading: 600;
+  --subheading: 500;
+  --body: 400;
+  --muted: #9ca3af;
+}
+
+/* GLOBAL TEXT */
+body {
+  font-size: 65px;
+  line-height: 1.6;
+  color: #e5e7eb;
+}
+
+/* MAIN HEADINGS */
+h1 {
+  font-size: 28px;
+  font-weight: var(--heading);
+  letter-spacing: 0.4px;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: var(--heading);
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: var(--subheading);
+}
+
+/* SMALL LABELS */
+p, span {
+  font-size: 14px;
+  color: var(--muted);
+}
 * {
   box-sizing: border-box;
   font-family: "Segoe UI", sans-serif;
@@ -131,6 +167,16 @@ body {
   font-size: 13px;
   color: #666;
 }
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.card-subtext {
+  font-size: 14px;
+  color: #cbd5f5;
+}
 
 /* ================= MOTIVATION ================= */
 .motivation {
@@ -138,7 +184,7 @@ body {
   padding: 14px 20px;
   border-radius: 14px;
   color: white;
-  font-weight: 600;
+  font-weight: 8000;
   margin-bottom: 22px;
 }
 
@@ -353,10 +399,7 @@ body {
   color: white;
   cursor: pointer;
 }
-/* ================================
-   JUDGE FRIENDLY FONT SIZE PATCH
-   (NO LAYOUT CHANGE)
-================================ */
+
 
 /* MAIN PAGE TITLES */
 h1 {
@@ -457,6 +500,16 @@ h3 {
 .right-panel span {
   font-size: 15px;
 }
+/* STAT CARD ICONS (Graph, Clock, Brain) */
+.stat-card .icon svg {
+  width: 32px;
+  height: 32px;
+}
+.stat-card > div:first-child svg {
+  width: 36px;
+  height: 36px;
+}
+
 /* ===== JUDGE READABILITY FIX (SAFE) ===== */
 
 /* overall text thoda bada */
