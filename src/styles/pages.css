@@ -872,3 +872,75 @@ button {
 .ai-topic-card:not(.ai-highlight) li {
   color: #ede9fe !important;
 }
+
+/* ===== AI Recommendation Box ===== */
+.ai-highlight-wrap {
+  margin-top: 25px;
+}
+
+.ai-highlight {
+  background: linear-gradient(135deg, #1e90ff, #2563eb);
+  color: #ffffff;                 /* MAIN FIX */
+  padding: 18px 22px;
+  border-radius: 14px;
+  font-size: 15px;
+  line-height: 1.6;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Heading line */
+.ai-highlight b {
+  color: #ffffff;
+}
+
+/* Reason text */
+.ai-reason {
+  margin-top: 8px;
+  color: #e5e7eb;                 /* light grey, clearly visible */
+  font-size: 14px;
+}
+
+/* Study time text */
+.study-time {
+  margin-top: 6px;
+  color: #facc15;                 /* yellow highlight */
+  font-weight: 600;
+}
+
+/* ===== AI Recommendation Box (Font Polished) ===== */
+.ai-highlight {
+  background: linear-gradient(135deg, #1e90ff, #2563eb);
+  color: #ffffff;
+  padding: 20px 24px;
+  border-radius: 14px;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif; /* 🔥 */
+  font-size: 15.5px;
+  line-height: 1.65;
+  letter-spacing: 0.2px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* 🤖 AI Recommendation heading */
+.ai-highlight b {
+  display: inline-block;
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+/* 💡 Reason text */
+.ai-reason {
+  margin-top: 6px;
+  font-size: 14.5px;
+  font-weight: 400;
+  color: black;
+}
+
+/* ⏱️ Suggested study time */
+.study-time {
+  margin-top: 6px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #fde047; /* warm yellow */
+}
