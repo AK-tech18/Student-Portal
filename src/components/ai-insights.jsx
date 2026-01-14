@@ -6,6 +6,8 @@ export default function AIInsights({ back }) {
   const [analysis, setAnalysis] = useState([]);
   const [highlight, setHighlight] = useState("");
   const [aiTip, setAiTip] = useState("");
+  const [aiReason, setAiReason] = useState("");    
+  const [studyTime, setStudyTime] = useState("");   
 
   const handleUpload = (e) => {
     const selected = Array.from(e.target.files);
@@ -69,14 +71,14 @@ export default function AIInsights({ back }) {
 
     setAnalysis(result);
 
-    /* ========= AI DECISION LOGIC (FIXED) ========= */
+    /* ========= AI DECISION LOGIC (UNCHANGED) ========= */
     const high = result.filter((r) => r.priority === "High");
     const medium = result.filter((r) => r.priority === "Medium");
     const low = result.filter((r) => r.priority === "Low");
 
     let pool = [];
-
     const roll = Math.random();
+
     if (roll < 0.6 && high.length) pool = high;
     else if (roll < 0.85 && medium.length) pool = medium;
     else if (low.length) pool = low;
@@ -90,6 +92,17 @@ export default function AIInsights({ back }) {
       setAiTip(
         `Focus on ${pick.subject} — frequently asked in previous exams`
       );
+
+      // ✅ ADD-ON 1: WHY IMPORTANT
+      setAiReason(
+        `${pick.subject} shows high exam relevance based on repeated appearance in previous year papers.`
+      );
+
+      // ✅ ADD-ON 2: STUDY TIME
+      let time = "2 hours";
+      if (pick.priority === "High") time = "6 hours";
+      else if (pick.priority === "Medium") time = "4 hours";
+      setStudyTime(time);
     }, 100);
   };
 
@@ -144,13 +157,25 @@ export default function AIInsights({ back }) {
         ))}
       </div>
 
-      {/* ===== AI TIP ===== */}
+      {/* ===== AI TIP + ADD-ONS ===== */}
       {aiTip && (
         <div className="ai-highlight-wrap">
           <div className="ai-highlight">
             🤖 <b>AI Recommendation:</b>
             <br />
             {aiTip}
+
+            {aiReason && (
+              <p className="ai-reason">
+                💡 <i>{aiReason}</i>
+              </p>
+            )}
+
+            {studyTime && (
+              <p className="study-time">
+                ⏱️ Suggested Study Time: <b>{studyTime}</b>
+              </p>
+            )}
           </div>
         </div>
       )}
