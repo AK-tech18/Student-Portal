@@ -5,6 +5,16 @@ Smart Helper is a **React-based student productivity dashboard** built to help s
 This project is developed as a **functional MVP (Minimum Viable Product)** with a strong focus on **clean UI/UX, structured navigation, and real-world student exam preparation needs**.
 
 ---
+## ❓ Problem Statement
+
+Students often struggle to manage scattered study resources, 
+identify high-priority exam topics, and plan preparation effectively 
+using generic tools.
+
+Smart Helper solves this by providing a **single focused dashboard**
+that combines **study material, PYQs, practice questions, exam planning, 
+and AI-driven exam insights** tailored specifically for students.
+
 
 ## 🚀 Features
 
@@ -66,6 +76,17 @@ The AI module in Smart Helper focuses on **exam trend analysis** rather than hea
 - Designed as an explainable, frontend-based AI suitable for MVP and hackathon demonstrations
 
 This approach ensures **clarity, transparency, and scalability for future ML integration**.
+### 🤖 Why not ChatGPT?
+
+Unlike generic AI chatbots, Smart Helper’s AI is:
+- **Context-aware** (limited to syllabus & PYQs)
+- **Distraction-free** (no open-ended answers)
+- **Exam-focused** (prioritization, not explanations)
+- **Explainable** (students know *why* a topic is recommended)
+
+This makes it more effective for structured exam preparation
+than general-purpose AI tools.
+
 
 ---
 
