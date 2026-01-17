@@ -1,48 +1,200 @@
-import "../styles/login.css";
-import illustration from "./undraw_secure-login_m11a.svg";
+import { useState } from "react";
+import "../styles/auth.css";
+import "boxicons/css/boxicons.min.css";
 
-// ↑ svg ko assets folder me rakho
+export default function Login() {
+  const [active, setActive] = useState(false);
 
-export default function Login({ onLogin }) {
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const [regUsername, setRegUsername] = useState("");
+  const [regEmail, setRegEmail] = useState("");
+  const [regPassword, setRegPassword] = useState("");
+
+  // 🔐 LOGIN HANDLER
+  const handleLogin = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: loginEmail,
+          password: loginPassword,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+
+        // ✅ SAFE CHECK (THIS FIXES SERVER ERROR)
+        if (data.user && data.user.name) {
+          localStorage.setItem("userName", data.user.name);
+        }
+
+        window.location.reload();
+      } else {
+        alert(data.message || "Login failed");
+      }
+    } catch (err) {
+      alert("Server error");
+    }
+  };
+
+  // 🔐 REGISTER HANDLER (UNCHANGED)
+  const handleRegister = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: regUsername,
+          email: regEmail,
+          password: regPassword,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Registered successfully. Please login.");
+        setActive(false);
+      } else {
+        alert(data.message || "Registration failed");
+      }
+    } catch (err) {
+      alert("Server error");
+    }
+  };
+
   return (
-    <div className="login-wrapper">
-      {/* LEFT */}
-      <div className="left">
-        <h2>Login</h2>
-        <p>Enter your account details</p>
+    <div className="auth-wrapper">
+      <div className={`container ${active ? "active" : ""}`}>
 
-        <div className="input-box">
-          <input type="text" placeholder="Username" />
+        {/* ===== LOGIN ===== */}
+        <div className="form-box login">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleLogin();
+            }}
+          >
+            <h1>Login</h1>
+
+            <div className="input-box">
+              <input
+                type="email"
+                placeholder="Email"
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
+                required
+              />
+              <i className="bx bxs-user"></i>
+            </div>
+
+            <div className="input-box">
+              <input
+                type="password"
+                placeholder="Password"
+                value={loginPassword}
+                onChange={(e) => setLoginPassword(e.target.value)}
+                required
+              />
+              <i className="bx bxs-lock-alt"></i>
+            </div>
+
+            <div className="forgot-link">
+              <a href="#">Forgot Password?</a>
+            </div>
+
+            <button type="submit" className="btn">
+              Login
+            </button>
+          </form>
         </div>
 
-        <div className="input-box">
-          <input type="password" placeholder="Password" />
+        {/* ===== REGISTER ===== */}
+        <div className="form-box register">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleRegister();
+            }}
+          >
+            <h1>Register</h1>
+
+            <div className="input-box">
+              <input
+                type="text"
+                placeholder="Username"
+                value={regUsername}
+                onChange={(e) => setRegUsername(e.target.value)}
+                required
+              />
+              <i className="bx bxs-user"></i>
+            </div>
+
+            <div className="input-box">
+              <input
+                type="email"
+                placeholder="Email"
+                value={regEmail}
+                onChange={(e) => setRegEmail(e.target.value)}
+                required
+              />
+              <i className="bx bxs-envelope"></i>
+            </div>
+
+            <div className="input-box">
+              <input
+                type="password"
+                placeholder="Password"
+                value={regPassword}
+                onChange={(e) => setRegPassword(e.target.value)}
+                required
+              />
+              <i className="bx bxs-lock-alt"></i>
+            </div>
+
+            <button type="submit" className="btn">
+              Register
+            </button>
+          </form>
         </div>
 
-        <div className="forgot">Forgot Password?</div>
+        {/* ===== TOGGLE ===== */}
+        <div className="toggle-box">
+          <div className="toggle-panel toggle-left">
+            <h1>Hello, Welcome!</h1>
+            <p>Don't have an account?</p>
+            <button
+              type="button"
+              className="toggle-btn"
+              onClick={() => setActive(true)}
+            >
+              Register
+            </button>
+          </div>
 
-        <button className="login-btn" onClick={onLogin}>
-          Login
-        </button>
-
-        <div className="signup">
-          Don't have an account?
-          <span>Sign up</span>
+          <div className="toggle-panel toggle-right">
+            <h1>Welcome Back!</h1>
+            <p>Already have an account?</p>
+            <button
+              type="button"
+              className="toggle-btn"
+              onClick={() => setActive(false)}
+            >
+              Login
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* RIGHT */}
-      <div className="right">
-        <div className="welcome-card">
-          <h1>Welcome to<br />student portal</h1>
-          <p>Login to access your account</p>
-
-          <img
-            src={illustration}
-            alt="Student Illustration"
-            className="illustration"
-          />
-        </div>
       </div>
     </div>
   );

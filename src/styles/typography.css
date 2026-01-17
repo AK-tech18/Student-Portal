@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* SLIGHTLY REDUCED – BALANCED */
+  --text-xs: 14px;
+  --text-sm: 16px;
+  --text-base: 18px;     /* ⬅ pehle 19px tha */
+  --text-lg: 21px;       /* ⬅ pehle 22px */
+  --text-xl: 24px;       /* ⬅ pehle 26px */
+  --text-2xl: 30px;      /* ⬅ pehle 32px */
+  --text-3xl: 35px;      /* ⬅ pehle 38px */
+
+  --line-height-base: 1.75; /* ⬅ thoda compact */
+}
+
+
+body,
+input,
+button,
+textarea,
+select {
+  font-family: var(--font-main) !important;
+  font-size: var(--text-base) !important;
+  line-height: var(--line-height-base) !important;
+  color: #e5e7eb;
+}
+
+/* HEADINGS – CLEAR FROM DISTANCE */
+h1 {
+  font-size: var(--text-3xl) !important;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--text-2xl) !important;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: var(--text-xl) !important;
+  font-weight: 600;
+}
+
+/* NORMAL TEXT EVERYWHERE */
+p,
+span,
+label,
+li,
+td,
+th,
+button {
+  font-size: var(--text-sm) !important;
+}
+
+/* NAVIGATION / SIDEBAR / CARDS */
+nav,
+.sidebar,
+.card,
+.menu-item {
+  font-size: var(--text-base) !important;
+}
+
+/* FORMS */
+input,
+select,
+textarea {
+  font-size: var(--text-base) !important;
+}
+
+/* BUTTONS – CLICKABLE & CLEAR */
+button {
+  font-weight: 600;
+  padding: 10px 16px;
+}
+
+/* EXTRA AIR FOR EYES */
+* {
+  letter-spacing: 0.4px;
+}
+
+button.back-btn,
+.back-btn,
+.back-to-dashboard {
+  font-size: 16px ;   
+  padding: 8px 14px ; 
+  font-weight: 500 ;  
+  letter-spacing: 0.2px ;
+}
+
+.stat-card svg,
+.metric-card svg,
+.icon svg {
+  width: 28px;
+  height: 28px;
+}
+.stat-card .icon,
+.metric-card .icon {
+  font-size: 28px;
+  line-height: 1;
+}
+div svg {
+  width: 30px ;
+  height: 30px ;
+}
+
+
+div span {
+  font-size: 30px;
+}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import StudyMaterial from "./components/StudyMaterial";
@@ -12,9 +12,20 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [page, setPage] = useState("dashboard");
 
+  // 🔐 CHECK LOGIN FROM TOKEN
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setLoggedIn(true);
+    }
+  }, []);
+
+  // 🔐 LOGIN SCREEN
   if (!loggedIn) {
-    return <Login onLogin={() => setLoggedIn(true)} />;
+    return <Login />;
   }
+
+  // ===== PAGE ROUTING (UNCHANGED) =====
 
   if (page === "study") {
     return (
